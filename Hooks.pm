@@ -29,7 +29,7 @@ sub validate {
     $slot >= 0 and $slot <= 5;
 }
 
-our $VERSION = "1.0000";
+our $VERSION = "1.0001";
 
 {
     no warnings; # hackery below, no warnings in here thanks
@@ -98,12 +98,28 @@ GD::Graph::Hooks - Kludgey way to add callback hooks to GD::Graph
  use GD::Graph;        # the load order does not matter
 
  my $graph = GD::Graph::lines->new(500,500);
- $graph->add_hook( GD::Graph::Hooks::PRE_DATA => sub { ... stuff here ... } );
- $graph->plot([[1..3], [1..3]]);
 
-Possible hooks follow.  This documentation is sparse because you either got
-what you needed above already or you'll need to go source diving anyway.  The
-hooks appear as pairs because they are just different names for the same event.
+ $graph->add_hook( GD::Graph::Hooks::PRE_AXIS => sub {
+    $graph->add_hook( GD::Graph::Hooks::PRE_AXIS => sub {
+        my ($gobj, $gd, $left, $right, $top, $bottom, $gdta_x_axis) = @_;
+
+    $rsi_axis_clr = $gobj->set_clr(0xdd,0xdd,0xdd);
+        my @lhs = $gobj->val_to_pixel(1,100);
+        my @rhs = $gobj->val_to_pixel( @{$data[0]}+0, 70 );
+        $gd->filledRectangle(@lhs,@rhs,$rsi_axis_clr);
+
+        my @lhs = $gobj->val_to_pixel(1,30);
+        my @rhs = $gobj->val_to_pixel( @{$data[0]}+0, 0 );
+        $gd->filledRectangle(@lhs,@rhs,$rsi_axis_clr);
+ });
+
+ $graph->plot(\@data);
+
+
+Possible hook names follow.  This documentation is sparse because you either
+got what you needed above already or you'll need to go source diving anyway.
+The hooks appear as pairs because they are just different names for the same
+event.
 
 =over
 
