@@ -1,0 +1,13 @@
+MYMETA.json
+MYMETA.yml
+Makefile
+blib/arch/.exists
+blib/arch/auto/GD/Graph/Hooks/.exists
+blib/bin/.exists
+blib/lib/GD/Graph/.exists
+blib/lib/GD/Graph/Hooks.pm
+blib/lib/auto/GD/Graph/Hooks/.exists
+blib/man1/.exists
+blib/man3/.exists
+blib/script/.exists
+pm_to_blib
