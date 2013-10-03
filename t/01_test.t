@@ -4,8 +4,8 @@ use Test;
 
 plan tests => 4;
 
-my $rv1 = eval "use GD::Graph::lines; 9";
-my $rv2 = eval "use GD::Graph::Hooks; 9";
+my $rv1 = eval "use GD::Graph::Hooks; 9";
+my $rv2 = eval "use GD::Graph::lines; 9";
 
 my $rv3 = eval q /
     my $graph = GD::Graph::lines->new(500,500);

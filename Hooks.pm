@@ -83,3 +83,62 @@ our $VERSION = "1.0000";
 }
 
 1;
+
+__END__
+
+=encoding utf-8
+
+=head1 NAME
+
+GD::Graph::Hooks - Kludgey way to add callback hooks to GD::Graph
+
+=head1 SYNOPSIS
+
+ use GD::Graph::Hooks;
+ use GD::Graph;        # the load order does not matter
+
+ my $graph = GD::Graph::lines->new(500,500);
+ $graph->add_hook( GD::Graph::Hooks::PRE_DATA => sub { ... stuff here ... } );
+ $graph->plot([[1..3], [1..3]]);
+
+Possible hooks follow.  This documentation is sparse because you either got
+what you needed above already or you'll need to go source diving anyway.  The
+hooks appear as pairs because they are just different names for the same event.
+
+=over
+
+=item POST_INIT / PRE_TEXT
+
+=item POST_TEXT / PRE_AXIS
+
+=item POST_AXIS / PRE_DATA
+
+=item POST_DATA / PRE_VALUES
+
+=item POST_VALUES / PRE_LEGEND
+
+=item POST_LEGEND / PRE_RETURN
+
+=back
+
+=head1 AUTHOR
+
+Paul Miller C<< <jettero@cpan.org> >>
+
+I am using this software in my own projects...  If you find bugs, please please
+please let me know.  There is a mailing list with very light traffic that you
+might want to join: L<http://groups.google.com/group/stockmonkey/>.
+
+=head1 COPYRIGHT
+
+Copyright © 2013 Paul Miller
+
+=head1 LICENSE
+
+This is released under the Artistic License. See L<perlartistic>.
+
+=head1 SEE ALSO
+
+perl(1), L<GD::Graph>
+
+=cut
