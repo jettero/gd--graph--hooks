@@ -29,7 +29,7 @@ sub validate {
     $slot >= 0 and $slot <= 5;
 }
 
-our $VERSION = "1.0001";
+our $VERSION = "1.0002";
 
 {
     no warnings; # hackery below, no warnings in here thanks
@@ -142,8 +142,7 @@ event.
 Paul Miller C<< <jettero@cpan.org> >>
 
 I am using this software in my own projects...  If you find bugs, please please
-please let me know.  There is a mailing list with very light traffic that you
-might want to join: L<http://groups.google.com/group/stockmonkey/>.
+please let me know.  I do use RT.
 
 =head1 COPYRIGHT
 
