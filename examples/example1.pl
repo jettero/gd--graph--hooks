@@ -5,7 +5,7 @@ use GD::Graph::Hooks;
 use GD::Graph::lines;
 
 my @data;
-for( 0 .. 100 ) { push @data, [ $_, $_ + 5*(rand 7) ]; }
+for( 0 .. 100 ) { push @{$data[0]}, $_; push @{$data[1]}, $_ + 3*(rand 5); }
 
 my $graph = GD::Graph::lines->new(500,500);
 
