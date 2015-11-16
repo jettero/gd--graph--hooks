@@ -7,7 +7,35 @@ use GD::Graph::lines;
 my @data;
 for( 0 .. 100 ) { push @{$data[0]}, $_; push @{$data[1]}, $_ + 3*(rand 5); }
 
-my $graph = GD::Graph::lines->new(500,500);
+my (@mv_avg, @last);
+for my $i ( 0 .. $#{ $data[1] }) {
+    push @last, $data[1][$i];
+    if( @last > 4 ) {
+        shift @last while @last > 5;
+        my $sum = 0;
+           $sum += $_ for @last;
+        $mv_avg[$i] = ($sum / @last);
+    }
+}
+
+my $graph = GD::Graph::lines->new(1500,500);
+
+$graph->add_hook( 'GD::Graph::Hooks::PRE_DATA' => sub {
+    my ($gobj, $gd, $left, $right, $top, $bottom, $gdta_x_axis) = @_;
+    my $clr = $gobj->set_clr(0xaa, 0xaa, 0xaa);
+
+    my $x = 10;
+    while ( $x < $#{ $data[1] }-10 ) {
+        my @lhs = $gobj->val_to_pixel($x+1,  $data[1][$x]);
+        my @rhs = $gobj->val_to_pixel($x+11, $data[1][$x] + 10*($mv_avg[$x] - $mv_avg[$x-1]));
+
+        $x += 10;
+
+        print "adding line from (@lhs) to (@rhs)\n";
+
+        $gd->line(@lhs,@rhs,$clr);
+    }
+});
 
 my $gd = $graph->plot(\@data);
 

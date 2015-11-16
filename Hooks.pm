@@ -99,20 +99,6 @@ GD::Graph::Hooks - Kludgey way to add callback hooks to GD::Graph
 
  my $graph = GD::Graph::lines->new(500,500);
 
- $graph->add_hook( GD::Graph::Hooks::PRE_AXIS => sub {
-    $graph->add_hook( GD::Graph::Hooks::PRE_AXIS => sub {
-        my ($gobj, $gd, $left, $right, $top, $bottom, $gdta_x_axis) = @_;
-
-    $rsi_axis_clr = $gobj->set_clr(0xdd,0xdd,0xdd);
-        my @lhs = $gobj->val_to_pixel(1,100);
-        my @rhs = $gobj->val_to_pixel( @{$data[0]}+0, 70 );
-        $gd->filledRectangle(@lhs,@rhs,$rsi_axis_clr);
-
-        my @lhs = $gobj->val_to_pixel(1,30);
-        my @rhs = $gobj->val_to_pixel( @{$data[0]}+0, 0 );
-        $gd->filledRectangle(@lhs,@rhs,$rsi_axis_clr);
- });
-
  $graph->plot(\@data);
 
 
