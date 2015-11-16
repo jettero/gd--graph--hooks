@@ -5,7 +5,7 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-    'NAME'          => 'GD-Graph-Hooks',
+    'NAME'          => 'GD::Graph::Hooks',
     'VERSION_FROM'  => 'Hooks.pm',
 
     'PREREQ_PM'     => { 
