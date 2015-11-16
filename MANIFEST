@@ -1,5 +1,6 @@
+Changes
+examples/example1.pl
 Hooks.pm
 Makefile.PL
 MANIFEST
 t/01_test.t
-Changes
