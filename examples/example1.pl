@@ -7,6 +7,7 @@ use GD::Graph::lines;
 my @data;
 for( 0 .. 100 ) { push @{$data[0]}, $_; push @{$data[1]}, $_ + 3*(rand 5); }
 
+# compute a naive biased moving average
 my (@mv_avg, @last);
 for my $i ( 0 .. $#{ $data[1] }) {
     push @last, $data[1][$i];
@@ -26,14 +27,17 @@ $graph->add_hook( 'GD::Graph::Hooks::PRE_DATA' => sub {
 
     my $x = 10;
     while ( $x < $#{ $data[1] }-10 ) {
+        # compute line endpoints from a datapoint
         my @lhs = $gobj->val_to_pixel($x+1,  $data[1][$x]);
+
+        # to a predicted endpoint, based on the moving average
         my @rhs = $gobj->val_to_pixel($x+11, $data[1][$x] + 10*($mv_avg[$x] - $mv_avg[$x-1]));
 
-        $x += 10;
-
-        print "adding line from (@lhs) to (@rhs)\n";
+        print "adding line from data point (@lhs) to value predicted by mv_avg (@rhs)\n";
 
         $gd->line(@lhs,@rhs,$clr);
+
+        $x += 10;
     }
 });
 
