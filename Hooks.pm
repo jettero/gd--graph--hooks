@@ -29,7 +29,7 @@ sub validate {
     $slot >= 0 and $slot <= 5;
 }
 
-our $VERSION = "1.0002";
+our $VERSION = "1.0003";
 
 {
     no warnings; # hackery below, no warnings in here thanks
