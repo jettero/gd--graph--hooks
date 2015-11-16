@@ -9,7 +9,7 @@ my $rv2 = eval "use GD::Graph::lines; 9";
 
 my $rv3 = eval q /
     my $graph = GD::Graph::lines->new(500,500);
-    $graph->add_hook( GD::Graph::Hooks::PRE_DATA => sub { ok(1) } );
+    $graph->add_hook( 'GD::Graph::Hooks::PRE_DATA' => sub { ok(1) } );
     $graph->plot([[1..3], [1..3]]);
 
 9/;
